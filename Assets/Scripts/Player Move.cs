@@ -7,7 +7,6 @@ public class PlayerMove : MonoBehaviour
     public CharacterController controller;
     public float moveSpeed = walkSpeed;
     public float gravity = -9f;
-    public float jumpHeight = 3f;
     Vector3 velocity;
 
     public Transform groundCheck;
@@ -16,31 +15,64 @@ public class PlayerMove : MonoBehaviour
     bool isGrounded;
 
     private const float walkSpeed = 10f;
-    private const float runSpeed = 15f;
+    private float runSpeed = 15f;
+    [HideInInspector] public StaminaController staminaController;
+
+    private void Start()
+    {
+        staminaController = GetComponent<StaminaController>();
+
+        if (staminaController == null)
+        {
+            Debug.LogError("Playemove no staminacontroller found");
+        }
+
+        moveSpeed = walkSpeed;
+    }
+
+    public void SetRunSpeed(float speed)
+    {
+        runSpeed = speed;
+    }
     void Update()
     {
+        //check ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f; //minus två så den inte regristrerar innan vi nått marken
         }
+
+        //check movement
         float x = Input.GetAxis("Horizontal"); //Gå med WASD
         float z = Input.GetAxis("Vertical"); // -.- 
         Vector3 move = transform.right * x + transform.forward * z; //Rör sig i den riktningen som player också tittar i
         controller.Move(move * moveSpeed * Time.deltaTime); //Ref till vår charactercontroller som driver vår player + låter oss röra på oss
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+        
+        //check gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-        if (Input.GetKey(KeyCode.LeftShift))
+
+        //check sprint
+        if (staminaController == null)
+        {
+            return;
+        }
+
+        bool wantsToSprint = Input.GetKey(KeyCode.LeftShift);
+
+        if (wantsToSprint && staminaController.playerStamina > 0)
         {
             moveSpeed = runSpeed;
+
+            staminaController.weAreSprinting = true;
+            staminaController.Sprinting();
         }
         else
         {
             moveSpeed = walkSpeed;
+
+            staminaController.weAreSprinting = false;
         }
     }
 }
