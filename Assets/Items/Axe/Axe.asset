@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e682ee67c8881244bb671436f3e417d, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  ItemName: Axe
+  icon: {fileID: 21300000, guid: e5dd0e0efe559cb42a4e78d071f97439, type: 3}
+  maxStackSize: 1
+  ItemPrefab: {fileID: 5169721434159347651, guid: f6fecac8d27f4b048995ae8423419afe, type: 3}
+  handItemPrefab: {fileID: 0}
+  description: it can break planks from the door
