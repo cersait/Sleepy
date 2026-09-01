@@ -113,12 +113,11 @@ public class Inventory : MonoBehaviour
                     remaining
                 );
 
-                slot.SetItem(
-                    itemToAdd,
-                    amountToPlace
-                );
+                slot.SetItem(itemToAdd, amountToPlace);
 
                 remaining -= amountToPlace;
+
+                UpdateHeldItem();
 
                 if (remaining <= 0)
                     return;
@@ -335,12 +334,14 @@ public class Inventory : MonoBehaviour
 
     private void HandleHotBarSelection()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < hotbarSlots.Count && i < 6; i++)
         {
             if (Input.GetKeyDown((i + 1).ToString()))
             {
                 equipeedHotbarIndex = i;
+
                 UpdateHotbarOpacity();
+                UpdateHeldItem();
             }
         }
     }
@@ -427,6 +428,48 @@ public class Inventory : MonoBehaviour
         {
             slot.SetItem(slot.GetItem(), newAmount);
         }
+    }
+
+    private void UpdateHeldItem()
+    {
+        // Remove currently held item
+        if (currentHandItem != null)
+        {
+            Destroy(currentHandItem);
+            currentHandItem = null;
+        }
+
+        // Make sure the index is valid
+        if (equipeedHotbarIndex < 0 ||
+            equipeedHotbarIndex >= hotbarSlots.Count)
+        {
+            return;
+        }
+
+        Slot slot = hotbarSlots[equipeedHotbarIndex];
+
+        // Nothing in the selected slot
+        if (!slot.HasItem())
+            return;
+
+        ItemSO item = slot.GetItem();
+
+        // Make sure the ItemSO has a prefab
+        if (item.ItemPrefab == null)
+        {
+            Debug.LogWarning(
+                item.ItemName + " does not have an ItemPrefab!"
+            );
+            return;
+        }
+
+        // Spawn the item in the player's hand
+        currentHandItem = Instantiate(item.ItemPrefab, hand);
+
+        // Reset local position/rotation
+        currentHandItem.transform.localPosition = Vector3.zero;
+        currentHandItem.transform.localRotation = Quaternion.identity;
+        currentHandItem.transform.localScale = Vector3.one;
     }
 
 }
