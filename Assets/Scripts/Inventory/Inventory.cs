@@ -73,9 +73,9 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemSO itemToAdd, int amount)
     {
-        int remanining = amount;
+        int remaining = amount;
 
-        foreach(Slot slot in allSlots)
+        foreach (Slot slot in hotbarSlots)
         {
             if (slot.HasItem() && slot.GetItem() == itemToAdd)
             {
@@ -85,33 +85,104 @@ public class Inventory : MonoBehaviour
                 if (currentAmount < maxStack)
                 {
                     int spaceLeft = maxStack - currentAmount;
-                    int amountToAdd = Mathf.Min(spaceLeft, remanining);
 
-                    slot.SetItem(itemToAdd, currentAmount + amountToAdd);
-                    remanining -= amountToAdd;
+                    int amountToAdd = Mathf.Min(
+                        spaceLeft,
+                        remaining
+                    );
 
-                    if (remanining <= 0)
+                    slot.SetItem(
+                        itemToAdd,
+                        currentAmount + amountToAdd
+                    );
+
+                    remaining -= amountToAdd;
+
+                    if (remaining <= 0)
                         return;
                 }
             }
         }
 
-        foreach (Slot slot in allSlots)
+        foreach (Slot slot in hotbarSlots)
         {
             if (!slot.HasItem())
             {
-                int amountToPlace = Mathf.Min(itemToAdd.maxStackSize, remanining);
-                slot.SetItem(itemToAdd, amountToPlace);
-                remanining -= amountToPlace;
+                int amountToPlace = Mathf.Min(
+                    itemToAdd.maxStackSize,
+                    remaining
+                );
 
-                if (remanining <= 0)
+                slot.SetItem(
+                    itemToAdd,
+                    amountToPlace
+                );
+
+                remaining -= amountToPlace;
+
+                if (remaining <= 0)
                     return;
             }
         }
 
-        if (remanining > 0)
+        foreach (Slot slot in inventorySlots)
         {
-            Debug.Log("Inventory is full, could not add " + remanining + "of" + itemToAdd.ItemName);
+            if (slot.HasItem() && slot.GetItem() == itemToAdd)
+            {
+                int currentAmount = slot.GetAmount();
+                int maxStack = itemToAdd.maxStackSize;
+
+                if (currentAmount < maxStack)
+                {
+                    int spaceLeft = maxStack - currentAmount;
+
+                    int amountToAdd = Mathf.Min(
+                        spaceLeft,
+                        remaining
+                    );
+
+                    slot.SetItem(
+                        itemToAdd,
+                        currentAmount + amountToAdd
+                    );
+
+                    remaining -= amountToAdd;
+
+                    if (remaining <= 0)
+                        return;
+                }
+            }
+        }
+
+        foreach (Slot slot in inventorySlots)
+        {
+            if (!slot.HasItem())
+            {
+                int amountToPlace = Mathf.Min(
+                    itemToAdd.maxStackSize,
+                    remaining
+                );
+
+                slot.SetItem(
+                    itemToAdd,
+                    amountToPlace
+                );
+
+                remaining -= amountToPlace;
+
+                if (remaining <= 0)
+                    return;
+            }
+        }
+
+        if (remaining > 0)
+        {
+            Debug.Log(
+                "Inventory is full, could not add " +
+                remaining +
+                " of " +
+                itemToAdd.ItemName
+            );
         }
     }
 
@@ -315,6 +386,47 @@ public class Inventory : MonoBehaviour
             }
         }
         itemDescriptionParent.SetActive(false);
+    }
+
+    public ItemSO GetEquippedItem()
+    {
+        if (equipeedHotbarIndex < 0 ||
+            equipeedHotbarIndex >= hotbarSlots.Count)
+        {
+            return null;
+        }
+
+        Slot slot = hotbarSlots[equipeedHotbarIndex];
+
+        if (!slot.HasItem())
+            return null;
+
+        return slot.GetItem();
+    }
+
+    public void ConsumeEquippedItem(int amount = 1)
+    {
+        if (equipeedHotbarIndex < 0 ||
+            equipeedHotbarIndex >= hotbarSlots.Count)
+        {
+            return;
+        }
+
+        Slot slot = hotbarSlots[equipeedHotbarIndex];
+
+        if (!slot.HasItem())
+            return;
+
+        int newAmount = slot.GetAmount() - amount;
+
+        if (newAmount <= 0)
+        {
+            slot.ClearSlot();
+        }
+        else
+        {
+            slot.SetItem(slot.GetItem(), newAmount);
+        }
     }
 
 }
