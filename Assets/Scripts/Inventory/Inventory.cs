@@ -422,10 +422,19 @@ public class Inventory : MonoBehaviour
 
         if (newAmount <= 0)
         {
+            // Remove the item from the hotbar
             slot.ClearSlot();
+
+            // Remove the item from the player's hand
+            if (currentHandItem != null)
+            {
+                Destroy(currentHandItem);
+                currentHandItem = null;
+            }
         }
         else
         {
+            // Just reduce the stack
             slot.SetItem(slot.GetItem(), newAmount);
         }
     }
