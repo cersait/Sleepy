@@ -15,6 +15,6 @@ MonoBehaviour:
   ItemName: Axe
   icon: {fileID: 21300000, guid: e5dd0e0efe559cb42a4e78d071f97439, type: 3}
   maxStackSize: 1
-  ItemPrefab: {fileID: 5169721434159347651, guid: f6fecac8d27f4b048995ae8423419afe, type: 3}
+  ItemPrefab: {fileID: 1164328234615206, guid: cdebefa9cede542489ec77a0e0261343, type: 3}
   handItemPrefab: {fileID: 0}
   description: it can break planks from the door

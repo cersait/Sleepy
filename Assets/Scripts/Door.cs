@@ -21,8 +21,7 @@ public class Door : MonoBehaviour, IInteractable
             return;
         }
 
-        Inventory inventory =
-            interactor.GetInventory();
+        Inventory inventory = interactor.GetInventory();
 
         if (inventory == null)
         {
@@ -30,8 +29,7 @@ public class Door : MonoBehaviour, IInteractable
             return;
         }
 
-        ItemSO equippedItem =
-            inventory.GetEquippedItem();
+        ItemSO equippedItem = inventory.GetEquippedItem();
 
         // Nothing equipped
         if (equippedItem == null)
