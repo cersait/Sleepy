@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyItem: {fileID: 11400000, guid: f2b8177ec179f2546b1cfb955ea7a71b, type: 2}
   axeItem: {fileID: 11400000, guid: 1cd4bca1358c4c749b746ba99a7731fe, type: 2}
+  paperItem: {fileID: 11400000, guid: b4f9aaf0931bf5c4ba7e967b043f62f6, type: 2}
   hotbarObj: {fileID: 836847305828230445}
   inventorySlotParent: {fileID: 1176751957017796571}
   container: {fileID: 4343564119580809508}

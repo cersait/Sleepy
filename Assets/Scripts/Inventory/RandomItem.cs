@@ -1,32 +1,39 @@
 using UnityEngine;
 
-public class RandomItem : MonoBehaviour
+public class RandomItem: MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour item1;
-    [SerializeField] private MonoBehaviour item2;
-    [SerializeField] private MonoBehaviour item3;
+    [Header("Possible Items")]
+    [SerializeField] private ItemSO item1;
+    [SerializeField] private ItemSO item2;
+    [SerializeField] private ItemSO item3;
 
     private void Start()
     {
-        item1.enabled = false;
-        item2.enabled = false;
-        item3.enabled = false;
+        Item item = GetComponent<Item>();
 
-        int randomItem = Random.Range(0, 3);
+        if (item == null)
+        {
+            Debug.LogError("RandomItemSelector needs an Item component!");
+            return;
+        }
 
-        switch (randomItem)
+        int randomIndex = Random.Range(0, 3);
+
+        switch (randomIndex)
         {
             case 0:
-                item1.enabled = true;
+                item.item = item1;
                 break;
 
             case 1:
-                item2.enabled = true;
+                item.item = item2;
                 break;
 
             case 2:
-                item3.enabled = true;
+                item.item = item3;
                 break;
         }
+
+        Debug.Log("This object is: " + item.item.ItemName);
     }
 }

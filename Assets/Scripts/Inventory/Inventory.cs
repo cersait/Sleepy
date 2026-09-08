@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public ItemSO keyItem;
     public ItemSO axeItem;
+    public ItemSO paperItem;
 
     public GameObject hotbarObj;
     public GameObject inventorySlotParent;
@@ -69,6 +70,8 @@ public class Inventory : MonoBehaviour
         UpdateHotbarOpacity();
 
         UpdateItemDescription();
+
+        UpdateHeldItem();
     }
 
     public void AddItem(ItemSO itemToAdd, int amount)
