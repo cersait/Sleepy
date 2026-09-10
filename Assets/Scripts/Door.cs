@@ -12,8 +12,7 @@ public class Door : MonoBehaviour, IInteractable
         if (isOpen)
             return;
 
-        Interactor interactor =
-            FindFirstObjectByType<Interactor>();
+        Interactor interactor = FindFirstObjectByType<Interactor>();
 
         if (interactor == null)
         {

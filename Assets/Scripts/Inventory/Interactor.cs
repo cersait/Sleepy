@@ -45,8 +45,7 @@ public class Interactor : MonoBehaviour
     {
         DetectInteractable();
 
-        if (currentInteractable != null &&
-            Input.GetKeyDown(KeyCode.E))
+        if (currentInteractable != null && Input.GetKeyDown(KeyCode.E))
         {
             currentInteractable.Interact();
         }
@@ -59,25 +58,17 @@ public class Interactor : MonoBehaviour
         if (Camera.main == null)
             return;
 
-        Ray ray = new Ray(
-            Camera.main.transform.position,
-            Camera.main.transform.forward
-        );
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-        if (Physics.Raycast(
-            ray,
-            out RaycastHit hit,
-            interactRange))
+        if (Physics.Raycast(ray, out RaycastHit hit, interactRange))
         {
             // Check object itself
-            currentInteractable =
-                hit.collider.GetComponent<IInteractable>();
+            currentInteractable = hit.collider.GetComponent<IInteractable>();
 
             // Check parent if not found
             if (currentInteractable == null)
             {
-                currentInteractable =
-                    hit.collider.GetComponentInParent<IInteractable>();
+                currentInteractable = hit.collider.GetComponentInParent<IInteractable>();
             }
 
             if (currentInteractable != null)

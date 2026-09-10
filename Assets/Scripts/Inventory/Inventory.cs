@@ -16,7 +16,6 @@ public class Inventory : MonoBehaviour
     public Image dragIcon;
 
     public float pickupRange = 5f;
-    private Item lookedAtItem = null;
     public Material highlightMaterial;
     private Material originalMaterial;
     private Renderer lookedAtRenderer = null;
@@ -477,6 +476,12 @@ public class Inventory : MonoBehaviour
 
         // Spawn the item in the player's hand
         currentHandItem = Instantiate(item.ItemPrefab, hand);
+        
+        Rigidbody rb = currentHandItem.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.freezeRotation = true;
+        }
 
         // Reset local position/rotation
         currentHandItem.transform.localPosition = Vector3.zero;
