@@ -86,7 +86,7 @@ public class Lockpad : MonoBehaviour, IInteractable
             StartCoroutine(StopDoor());
 
             // Optional: prevent the keypad from being used again
-            // LockPanel.SetActive(false);
+            //LockPanel.SetActive(false);
         }
         else
         {
