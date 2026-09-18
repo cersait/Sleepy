@@ -732,7 +732,7 @@ Transform:
   m_GameObject: {fileID: 162867693}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -0.036, z: -8.1}
+  m_LocalPosition: {x: 0.01, y: -0.311, z: -8.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1020,7 +1020,7 @@ Transform:
   m_GameObject: {fileID: 228653700}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.26258424, z: -0, w: 0.9649091}
-  m_LocalPosition: {x: 10.63, y: 1.43, z: -1.24}
+  m_LocalPosition: {x: 16.99, y: 1.43, z: 1.66}
   m_LocalScale: {x: 2, y: 3.9747598, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1251,7 +1251,7 @@ GameObject:
   - component: {fileID: 264442924}
   - component: {fileID: 264442928}
   m_Layer: 0
-  m_Name: New Game Object
+  m_Name: Locker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,6 +2866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: axe_Blood
       objectReference: {fileID: 0}
+    - target: {fileID: 8588967316968379231, guid: 0aea3f5f1b10d4548a8b93d033883712, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2896,7 +2900,7 @@ Transform:
   m_GameObject: {fileID: 474509934}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.06, y: 0.95, z: 4.82}
+  m_LocalPosition: {x: 9.74, y: 0.95, z: 4.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3380,8 +3384,8 @@ Transform:
   m_GameObject: {fileID: 657900689}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.43, y: -0.1018002, z: 0.11546639}
-  m_LocalScale: {x: 14.72, y: 1, z: 15.43}
+  m_LocalPosition: {x: 19.5563, y: -0.1018, z: -2.8977}
+  m_LocalScale: {x: 32.9728, y: 1, z: 21.456959}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1753175426}
@@ -4648,7 +4652,7 @@ GameObject:
   - component: {fileID: 1250435841}
   - component: {fileID: 1250435840}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: LockerDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4687,6 +4691,9 @@ MonoBehaviour:
   Locked2: {fileID: 162867693}
   player: {fileID: 8181839979532722391}
   Lockdoor: {fileID: 1250435839}
+  enemyController: {fileID: 1520412820}
+  Loseplayer: 1.5
+  Keepplayer: 3
 --- !u!65 &1250435841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5503,7 +5510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &1520412813
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5609,7 +5616,7 @@ Transform:
   m_GameObject: {fileID: 1520412811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.26258424, z: -0, w: 0.9649091}
-  m_LocalPosition: {x: 5.18, y: 1.43, z: -5.63}
+  m_LocalPosition: {x: 17.2, y: 1.43, z: -4.5}
   m_LocalScale: {x: 2, y: 3.9747598, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5640,6 +5647,7 @@ MonoBehaviour:
   viewAngle: 90
   losePlayerTime: 3
   attackRange: 2
+  _isAttacking: 0
   attackDuration: 2
   lookAtSpeed: 10
 --- !u!1 &1573952607
@@ -6311,7 +6319,7 @@ Transform:
   m_GameObject: {fileID: 1951656324}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.16, y: 0.95, z: -4.39}
+  m_LocalPosition: {x: 29.7, y: 0.95, z: -10.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6342,7 +6350,7 @@ Transform:
   m_GameObject: {fileID: 2013749004}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.16, y: 0.95, z: 4.8}
+  m_LocalPosition: {x: 28, y: 0.95, z: 4.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6373,7 +6381,7 @@ Transform:
   m_GameObject: {fileID: 2030829436}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.06, y: 0.95, z: -4.59}
+  m_LocalPosition: {x: 9.06, y: 0.95, z: -10.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7228,6 +7236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate
       objectReference: {fileID: 0}
+    - target: {fileID: 1593365673016715702, guid: 922147d61b36ffe43aee5a55c2e30761, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4139728783848886729, guid: 922147d61b36ffe43aee5a55c2e30761, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4926379
@@ -7615,6 +7627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rust_key
       objectReference: {fileID: 0}
+    - target: {fileID: 1251305980046214573, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1415670583437313618, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.51
@@ -7774,10 +7790,10 @@ SceneRoots:
   - {fileID: 6750469147959957053}
   - {fileID: 4122823714079174469}
   - {fileID: 2067919625}
+  - {fileID: 264442927}
   - {fileID: 1573952609}
   - {fileID: 1520412817}
   - {fileID: 228653706}
   - {fileID: 1183579024}
   - {fileID: 1753175426}
   - {fileID: 2091065508}
-  - {fileID: 264442927}

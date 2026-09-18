@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     private int _currentPatrolIndex;
     private bool _isWaiting;
     private float _timeSinceLostPlayer;
-    private bool _isAttacking;
+    public bool _isAttacking;
 
     [SerializeField] private float attackDuration = 2f;
     [SerializeField] private float lookAtSpeed = 10f;
@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
     {
         var distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
-        switch(_state)
+        switch (_state)
         {
             case EnemyState.Patrolling:
                 Patrol();
@@ -97,6 +97,10 @@ public class EnemyController : MonoBehaviour
         }
 
         UpdateAnimations();
+    }
+    public void SetLosePlayerTime(float newTime)
+    {
+        losePlayerTime = newTime;
     }
 
     private void StartAttack()
