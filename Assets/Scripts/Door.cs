@@ -4,7 +4,6 @@ public class Door : MonoBehaviour, IInteractable
 {
     [Header("Key Requirement")]
     [SerializeField] private ItemSO requiredItem;
-    [SerializeField] private Animator DoorAnim;
     private bool isOpen = false;
 
     public void Interact()
@@ -59,7 +58,6 @@ public class Door : MonoBehaviour, IInteractable
     private void OpenDoor()
     {
         isOpen = true;
-        DoorAnim.SetBool("IsOpen", true);
         // Temporary test
         gameObject.SetActive(false);
 
