@@ -9,6 +9,7 @@ public class Locker : MonoBehaviour, IInteractable
     [SerializeField] private Transform Lockdoor;
 
     [SerializeField] private EnemyController enemyController;
+    [SerializeField] private EnemyController2 enemyController2;
 
     private bool insideLocker = false;
 
@@ -17,9 +18,9 @@ public class Locker : MonoBehaviour, IInteractable
     private void Update()
     {
         // If player is inside the locker and enemy starts attacking
-        if (insideLocker && enemyController != null)
+        if (insideLocker && enemyController != null || insideLocker && enemyController2 != null)
         {
-            if (enemyController._isAttacking)
+            if (enemyController._isAttacking || enemyController2._isAttacking)
             {
                 player.transform.position = Locked2.transform.position;
             }
@@ -66,15 +67,17 @@ public class Locker : MonoBehaviour, IInteractable
         if (playerMove != null)
             playerMove.enabled = !playerMove.enabled;
 
-        if (enemyController != null)
+        if (enemyController != null || enemyController2 != null) 
         {
             if (insideLocker)
             {
                 enemyController.SetLosePlayerTime(Loseplayer);
+                enemyController2.SetLosePlayerTime(Loseplayer);
             }
             else
             {
                 enemyController.SetLosePlayerTime(Keepplayer);
+                enemyController2.SetLosePlayerTime(Keepplayer);
             }
         }
     }

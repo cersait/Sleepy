@@ -27,7 +27,7 @@ public class EnemyController2 : MonoBehaviour
     private Animator _animator;
     private EnemyState2 _state = EnemyState2.Patrolling;
     private float _timeSinceLostPlayer;
-    private bool _isAttacking;
+    public bool _isAttacking;
 
     [Header("Speed")]
     [SerializeField] private float patrolSpeed = 3f;
@@ -80,7 +80,7 @@ public class EnemyController2 : MonoBehaviour
                     if (_timeSinceLostPlayer >= losePlayerTime)
                     {
                         _state = EnemyState2.Patrolling;
-                        Patrol();
+                        NextPatrol();
                     }
                 }
                 else
@@ -102,6 +102,10 @@ public class EnemyController2 : MonoBehaviour
         }
 
         UpdateAnimations();
+    }
+    public void SetLosePlayerTime(float newTime)
+    {
+        losePlayerTime = newTime;
     }
 
     private void StartAttack()
@@ -204,6 +208,17 @@ public class EnemyController2 : MonoBehaviour
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                 _agent.SetDestination(point);
             }
+        }
+    }
+
+    private void NextPatrol()
+    {
+        Vector3 point;
+
+        if (RandomPoint(transform.position, patrolRange, out point))
+        {
+            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+            _agent.SetDestination(point);
         }
     }
 
