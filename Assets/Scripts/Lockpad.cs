@@ -7,7 +7,8 @@ public class Lockpad : MonoBehaviour, IInteractable
     [SerializeField] private Transform player;
 
     [SerializeField] private TextMeshProUGUI Ans;
-    [SerializeField] private Animator Door;
+    [SerializeField] private Animator Door1;
+    [SerializeField] private Animator Door2;
     [SerializeField] private GameObject LockPanel;
 
     [SerializeField] private int passwordLength = 4;
@@ -81,7 +82,8 @@ public class Lockpad : MonoBehaviour, IInteractable
         {
             Ans.text = "Correct";
 
-            Door.SetBool("Open", true);
+            Door1.SetBool("Open", true);
+            Door2.SetBool("Open", true);
 
             StartCoroutine(StopDoor());
 
@@ -107,8 +109,10 @@ public class Lockpad : MonoBehaviour, IInteractable
     IEnumerator StopDoor()
     {
         yield return new WaitForSeconds(0.5f);
-        Door.SetBool("Open", false);
-        Door.enabled = false;
+        Door1.SetBool("Open", false);
+        Door2.SetBool("Open", false);
+        Door1.enabled = false;
+        Door2.enabled = false;
     }
 
     public string GetPassword()
