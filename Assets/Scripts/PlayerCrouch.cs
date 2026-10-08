@@ -7,21 +7,23 @@ public class PlayerCrouch : MonoBehaviour
 {
     [SerializeField] float crouchHeight = 1f;
     [SerializeField] float crouchTransitionSpeed = 10f;
-    [SerializeField] float crouchSpeedMultiplier = .5f;
+    //[SerializeField] float crouchSpeedMultiplier = .5f;
 
     PlayerMove player;
+    StaminaController stamina;
     PlayerInput playerInput;
-    InputAction crouchAction;
+    public InputAction crouchAction;
 
     Vector3 initialCameraPosition;
     float currentHeight;
     float standingHeight;
 
-    bool IsCrouching => standingHeight - currentHeight > .1f;
+    public bool IsCrouching => standingHeight - currentHeight > .1f;
 
     void Awake()
     {
         player = GetComponent<PlayerMove>();
+        stamina = GetComponent<StaminaController>();
         playerInput = GetComponent<PlayerInput>();
         crouchAction = playerInput.actions.FindAction("crouch", true);
     }
@@ -69,11 +71,11 @@ public class PlayerCrouch : MonoBehaviour
 
         if (IsCrouching)
         {
-            player.SetMovementSpeedMultiplier(crouchSpeedMultiplier);
+            stamina.LockSpeed();
         }
         else
         {
-            player.SetMovementSpeedMultiplier(1f);
+            stamina.UnlockSpeed();
         }
     }
 }

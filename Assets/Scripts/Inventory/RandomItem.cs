@@ -41,6 +41,7 @@ public class RandomItem: MonoBehaviour
                     item.item = item3;
                     break;
             }
+
             talPool.RemoveAt(randomIndex);
 
             string test = "";

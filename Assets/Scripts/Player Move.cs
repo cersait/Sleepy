@@ -29,6 +29,8 @@ public class PlayerMove : MonoBehaviour
     public Transform cameraTransform;
     public event Action OnBeforeMove;
 
+    PlayerCrouch crouch;
+
     private void Start()
     {
         staminaController = GetComponent<StaminaController>();

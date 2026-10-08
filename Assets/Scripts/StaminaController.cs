@@ -18,14 +18,16 @@ public class StaminaController : MonoBehaviour
     [HideInInspector] public bool weAreSprinting = false;
 
     [Header("Run Speed")]
-    [SerializeField] private int slowedRunSpeed = 10;
-    [SerializeField] private int normalRunSpeed = 20;
+    [SerializeField] private int WalkSpeed = 10;
+    [SerializeField] private int RunSpeed = 20;
 
     [Header("UI")]
     [SerializeField] private Image staminaProgressUI;
     [SerializeField] private CanvasGroup sliderCanvasGroup;
 
     private PlayerMove playerController;
+    public bool isCrouch = false;
+    [SerializeField] float crouchSpeedMultiplier = .5f;
 
     private void Start()
     {
@@ -67,7 +69,7 @@ public class StaminaController : MonoBehaviour
             {
                 playerStamina = maxStamina;
 
-                playerController.SetRunSpeed(normalRunSpeed);
+                playerController.SetRunSpeed(RunSpeed);
 
                 hasRegenerated = true;
 
@@ -101,12 +103,28 @@ public class StaminaController : MonoBehaviour
 
                 hasRegenerated = false;
 
-                playerController.SetRunSpeed(slowedRunSpeed);
+                playerController.SetRunSpeed(WalkSpeed);
 
                 // Keep the stamina bar visible
                 sliderCanvasGroup.alpha = 1;
             }
         }
+    }
+
+    public void LockSpeed()
+    {
+        isCrouch = true;
+        playerController.SetRunSpeed(WalkSpeed); // Force revert to default when locked
+        playerController.SetMovementSpeedMultiplier(crouchSpeedMultiplier);
+        weAreSprinting = false;
+    }
+
+    public void UnlockSpeed()
+    {
+        isCrouch = false;
+        playerController.SetRunSpeed(RunSpeed);
+        playerController.SetMovementSpeedMultiplier(1f);
+        weAreSprinting = true;
     }
 
     private void UpdateStaminaBar()
