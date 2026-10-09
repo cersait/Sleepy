@@ -39,7 +39,7 @@ public class EnemyController2 : MonoBehaviour
 
     private float patrolRange = 10f;
 
-
+    //public Animation test;
 
     private bool gameOverStarted;
 
@@ -191,6 +191,7 @@ public class EnemyController2 : MonoBehaviour
     {
         _agent.speed = followSpeed;
         _agent.acceleration = followAccel;
+        //test["Walk"].speed = 1;
 
         _agent.SetDestination(player.position);
     }
@@ -199,7 +200,8 @@ public class EnemyController2 : MonoBehaviour
     {
         _agent.speed = patrolSpeed;
         _agent.acceleration = patrolAccel;
-
+        //test["Walk"].speed = 10;
+        
         if (_agent.remainingDistance <= _agent.stoppingDistance) //done with path
         {
             Vector3 point;

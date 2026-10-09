@@ -6179,11 +6179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251387331775686660, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1298106816720483152, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.99
+      value: 33.3
       objectReference: {fileID: 0}
     - target: {fileID: 1298106816720483152, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6191,7 +6191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1298106816720483152, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.66
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 1298106816720483152, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6225,6 +6225,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 8181839979532722391}
+    - target: {fileID: 3791083557437079305, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
+      propertyPath: followAccel
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791083557437079305, guid: 6af321e43da89a846952dcbb872bc8d6, type: 3}
+      propertyPath: followSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

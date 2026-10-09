@@ -71,11 +71,11 @@ public class PlayerCrouch : MonoBehaviour
 
         if (IsCrouching)
         {
-            stamina.LockSpeed();
+            //stamina.LockSpeed();
         }
         else
         {
-            stamina.UnlockSpeed();
+            //stamina.UnlockSpeed();
         }
     }
 }
