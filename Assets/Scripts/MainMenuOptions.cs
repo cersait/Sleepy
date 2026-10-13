@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenuOptions : MonoBehaviour
 {
+    public GameObject newButton;
     public GameObject loadButton;
     public int loadInt;
 
