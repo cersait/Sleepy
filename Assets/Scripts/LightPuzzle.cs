@@ -13,7 +13,7 @@ public class LightPuzzle : MonoBehaviour
     [Header("Door")]
     [SerializeField] private Animator doorAnimator;
 
-    [SerializeField] private int requiredLevers = 3;
+    [SerializeField] private int[] correctLevers = { 1, 3, 5 };
 
     private bool[] leverStates = new bool[5];
     private bool puzzleSolved = false;
@@ -46,20 +46,20 @@ public class LightPuzzle : MonoBehaviour
 
     private void CheckPuzzle()
     {
-        int enabledCount = 0;
-
-        for (int i = 0; i < leverStates.Length; i++)
+        // All correct levers must be enabled
+        foreach (int index in correctLevers)
         {
-            if (leverStates[i])
-                enabledCount++;
+            if (index < 0 || index >= leverStates.Length)
+                return;
+
+            if (!leverStates[index])
+            {
+                Debug.Log("Incorrect combination. Keep trying!");
+                return;
+            }
         }
 
-        Debug.Log("Levers enabled: " + enabledCount + "/5");
-
-        if (enabledCount >= requiredLevers)
-        {
-            SolvePuzzle();
-        }
+        SolvePuzzle();
     }
 
     private void SolvePuzzle()
