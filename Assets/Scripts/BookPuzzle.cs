@@ -14,7 +14,7 @@ public class BookPuzzle : MonoBehaviour
     [Header("Correct Book Numbers")]
     [SerializeField] private int[] correctBooks = { 1, 3, 5 };
 
-    private bool[] bookStates = new bool[10];
+    private bool[] bookStates = new bool[55];
     private bool puzzleSolved = false;
 
     public void ToggleBook(int bookNumber)
