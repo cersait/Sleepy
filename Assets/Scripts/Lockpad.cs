@@ -13,12 +13,12 @@ public class Lockpad : MonoBehaviour, IInteractable
 
     [SerializeField] private int passwordLength = 4;
 
-    private string Answer;
+    public string Answer;
     private PaperPassword Paper;
 
     private void Start()
     {
-        Paper = GetComponentInChildren<PaperPassword>();
+      //  Paper = FindAnyObjectByType<PaperPassword>();
         GenerateRandomPassword();
     }
     private void GenerateRandomPassword()

@@ -6,9 +6,17 @@ public class PaperPassword : MonoBehaviour
     [SerializeField] private TextMeshPro Papr;
     private static string password;
 
+    Lockpad lockpad;
+
     private void Awake()
     {
         SetPassword();
+    }
+
+    private void Start()
+    {
+        lockpad = FindAnyObjectByType<Lockpad>();
+        SetPassword(lockpad.Answer);
     }
 
     public void SetPassword(string newPassword)
