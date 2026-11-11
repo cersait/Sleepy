@@ -758,6 +758,7 @@ MonoBehaviour:
   newButton: {fileID: 0}
   loadButton: {fileID: 0}
   loadInt: 0
+  panel: {fileID: 759379264}
 --- !u!4 &997402646
 Transform:
   m_ObjectHideFlags: 0

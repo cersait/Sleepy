@@ -6,6 +6,11 @@ public class MainMenuOptions : MonoBehaviour
     public GameObject loadButton;
     public int loadInt;
 
+    void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
     void Start()
     {
         loadInt = PlayerPrefs.GetInt("AutoSave");
